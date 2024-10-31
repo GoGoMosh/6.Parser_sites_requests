@@ -20,3 +20,12 @@ ans = req.get(link).text
 
 # для нахождения нужных значений на странице
 soup = BeautifulSoup(ans, 'lxml')
+
+# для нахождения определенного блока, если нужны все, то find_all
+block = soup.find('div', id='tool_padding')
+
+check_js = block.find('div', id='javascript_check')
+
+types = check_js.find('class', id='option_title')
+
+print(check_js)
