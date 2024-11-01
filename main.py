@@ -4,12 +4,10 @@ import fake_useragent as fu
 from requests import session
 import multiprocessing
 
-
 # плюс lxml это используемый парсер
 
-# берем из файла IP и помещаем в список
 
-
+"""
 # функция для проверки прокси на валидность
 def handler(proxy):
     link = f'https://zastavok.net'
@@ -25,16 +23,17 @@ def handler(proxy):
     except:
         print('Прокси не валидный!')
 
-
-# подключения процессов для более быстрой обработки
 if __name__ == '__main__':
+
+    # берем из файла IP и помещаем в список
     with open('proxiess.txt') as file:
         proxy_base = ''.join(file.readlines()).strip().split('\n')
-
+    
+    # подключения процессов для более быстрой обработки
     with multiprocessing.Pool(multiprocessing.cpu_count()) as process:
         process.map(handler, proxy_base)
 
-"""
+
 img_num = 0
 num=0
 link = f'https://zastavok.net'
