@@ -1,9 +1,13 @@
 import requests as req
 from bs4 import BeautifulSoup
+import fake_useragent as fu
 # плюс lxml это используемый парсер
 
+# рандом юзеры для парсинга
+user = fu.UserAgent().random
+
 # обход обнаружения парсинга сайтом
-header = {'user-agent': 'i am bogdan'}
+header = {'user-agent': user}
 
 # ссылка на сайт для парсинга(сбора данных со страницы сайты)
 link = 'https://browser-info.ru/'
@@ -31,6 +35,6 @@ check_js = block.find('div', id='javascript_check')
 
 types = check_js.find_all('span')[0].text
 
-users = block.find('div', id='user_agent').text
+users_name = block.find('div', id='user_agent').text
 
-print(users)
+print(users_name)
