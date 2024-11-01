@@ -4,7 +4,7 @@ import fake_useragent as fu
 # плюс lxml это используемый парсер
 
 # password: FLb-czQ-uFk-ci7, login: test_member1234
-# ссылка на сайт для парсинга(сбора данных со страницы сайты)
+# ссылка на сайт для парсинга (сбора данных со страницы сайты)
 link = 'https://4pda.to/forum/index.php?act=auth'
 
 user = fu.UserAgent().random
@@ -17,6 +17,9 @@ data = {
     'login': 'test_member1234',
     'password': 'FLb-czQ-uFk-ci7'
 }
+
+# надо зарегаться
+ans = req.post(link, data=data, headers=header)
 
 """
 # рандом юзеры для парсинга
