@@ -6,11 +6,24 @@ import fake_useragent as fu
 from requests import session
 # плюс lxml это используемый парсер
 
-count_page = 0
+for i in range(4):
 
-link = f'https://zastavok.net/{count_page}'
+    link = f'https://zastavok.net/{i}'
 
+    ans = req.get(link).text
+    soup = BeautifulSoup(ans, 'lxml')
 
+    # находим блок с картинками
+    block = soup.find('div', class_='block-photo')
+
+    all_image = block.find_all('div', class_='short_full')
+
+    for img in all_image:
+
+        image_link = img.find('a').get('href')
+        print(image_link)
+
+    print('\n')
 """
 
 # Создадим сессию, чтобы каждый раз не регаться заново, а чтобы были куки.
