@@ -4,12 +4,26 @@ import requests as req
 from bs4 import BeautifulSoup
 import fake_useragent as fu
 from requests import session
+
 # плюс lxml это используемый парсер
 
 
 with open('proxy') as file:
     proxy_base = ''.join(file.readlines()).strip().split('\n')
 
+for proxy in proxy_base:
+    proxies = {
+        'http': f'http//:{proxy}',
+        'https': f'http//:{proxy}'
+    }
+
+    link = f'https://zastavok.net'
+
+    try:
+        ans = req.get(link, proxies=proxies, timeout=2).text
+        print(f'IP: {ans}')
+    except:
+        print('Прокси не валидный!')
 
 """
 img_num = 0
