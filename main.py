@@ -4,26 +4,37 @@ import requests as req
 from bs4 import BeautifulSoup
 import fake_useragent as fu
 from requests import session
+import multiprocessing
+
 
 # плюс lxml это используемый парсер
 
+# берем из файла IP и помещаем в список
 
-with open('proxy') as file:
-    proxy_base = ''.join(file.readlines()).strip().split('\n')
 
-for proxy in proxy_base:
+# функция для проверки прокси на валидность
+def handler(proxy):
+    link = f'https://zastavok.net'
+
     proxies = {
         'http': f'http//:{proxy}',
         'https': f'http//:{proxy}'
     }
 
-    link = f'https://zastavok.net'
-
     try:
         ans = req.get(link, proxies=proxies, timeout=2).text
-        print(f'IP: {ans}')
+        print(f'IP: {ans.strip()}')
     except:
         print('Прокси не валидный!')
+
+
+# подключения процессов для более быстрой обработки
+if __name__ == '__main__':
+    with open('proxiess.txt') as file:
+        proxy_base = ''.join(file.readlines()).strip().split('\n')
+
+    with multiprocessing.Pool(multiprocessing.cpu_count()) as process:
+        process.map(handler, proxy_base)
 
 """
 img_num = 0
