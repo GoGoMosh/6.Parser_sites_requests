@@ -1,5 +1,3 @@
-from itertools import count
-
 import requests as req
 from bs4 import BeautifulSoup
 import fake_useragent as fu
