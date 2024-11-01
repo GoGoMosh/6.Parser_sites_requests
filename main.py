@@ -11,8 +11,6 @@ with open('proxy') as file:
     proxy_base = ''.join(file.readlines()).strip().split('\n')
 
 
-
-
 """
 img_num = 0
 num=0
@@ -73,7 +71,7 @@ data = {
 # надо зарегаться
 ans = session.post(link, data=data, headers=header)
 
-# надо получить инфу с нащего профиля
+# надо получить инфу с нашего профиля
 link_profile = 'https://4pda.to/forum/index.php?showuser=11901521'
 
 profile_ans = session.get(link_profile, headers=header).text
