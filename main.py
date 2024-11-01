@@ -5,6 +5,8 @@ from requests import session
 
 # плюс lxml это используемый парсер
 
+"""
+
 # Создадим сессию, чтобы каждый раз не регаться заново, а чтобы были куки.
 session = req.Session()
 
@@ -51,7 +53,7 @@ for cookies in cookies_dict:
 rse_ans = session2.get(link_profile, headers=header).text
 print(rse_ans)
 
-"""
+
 # рандом юзеры для парсинга
 user = fu.UserAgent().random
 
