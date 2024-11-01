@@ -1,7 +1,12 @@
 import requests as req
 from bs4 import BeautifulSoup
 import fake_useragent as fu
+from requests import session
+
 # плюс lxml это используемый парсер
+
+# Создадим сессию, чтобы каждый раз не регаться заново, а чтобы были куки.
+session = req.Session()
 
 # password: FLb-czQ-uFk-ci7, login: test_member1234
 # ссылка на сайт для парсинга (сбора данных со страницы сайты)
@@ -19,7 +24,8 @@ data = {
 }
 
 # надо зарегаться
-ans = req.post(link, data=data, headers=header)
+ans = session.post(link, data=data, headers=header).text
+print(ans)
 
 """
 # рандом юзеры для парсинга
