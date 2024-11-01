@@ -2,11 +2,14 @@ import requests as req
 from bs4 import BeautifulSoup
 # плюс lxml это используемый парсер
 
+# обход обнаружения парсинга сайтом
+header = {'user-agent': 'i am bogdan'}
+
 # ссылка на сайт для парсинга(сбора данных со страницы сайты)
 link = 'https://browser-info.ru/'
 
 # получаем контент со страницы (text - указан для получения инфы на странице)
-ans = req.get(link).text
+ans = req.get(link, headers=header).text
 #
 # # проверяем дошёл ли наш запрос до сайта, если 200, то всё ок
 # print(ans.status_code)
@@ -26,6 +29,8 @@ block = soup.find('div', id='tool_padding')
 
 check_js = block.find('div', id='javascript_check')
 
-types = check_js.find('class', id='option_title')
+types = check_js.find_all('span')[0].text
 
-print(check_js)
+users = block.find('div', id='user_agent').text
+
+print(users)
