@@ -40,3 +40,6 @@ types = check_js.find_all('span')[0].text
 users_name = block.find('div', id='user_agent').text
 
 print(users_name)
+
+# для получения ссылок
+.find('a').get('href')
