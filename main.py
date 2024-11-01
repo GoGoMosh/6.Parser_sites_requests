@@ -44,6 +44,7 @@ cookies_dict = [
 
 session2 = req.Session()
 
+# запись кук из 1 сессии во 2
 for cookies in cookies_dict:
     session2.cookies.set(**cookies)
 
