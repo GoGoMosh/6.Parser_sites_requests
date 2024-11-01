@@ -28,10 +28,27 @@ ans = session.post(link, data=data, headers=header)
 
 # надо получить инфу с нащего профиля
 link_profile = 'https://4pda.to/forum/index.php?showuser=11901521'
+
 profile_ans = session.get(link_profile, headers=header).text
 
 # наши куки
-cookies_dict = [key for key in session.cookies]
+cookies_dict = [
+    {
+        'domain': key.domain,
+        'name': key.name,
+        'path': key.path,
+        'value': key.value
+    }
+    for key in session.cookies
+]
+
+session2 = req.Session()
+
+for cookies in cookies_dict:
+    session2.cookies.set(**cookies)
+
+rse_ans = session2.get(link_profile, headers=header).text
+print(rse_ans)
 
 """
 # рандом юзеры для парсинга
