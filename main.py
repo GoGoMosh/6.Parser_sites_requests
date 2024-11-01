@@ -7,7 +7,8 @@ from requests import session
 # плюс lxml это используемый парсер
 
 
-
+with open('proxy') as file:
+    proxy_base = ''.join(file.readlines()).strip().split('\n')
 
 
 
