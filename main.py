@@ -7,9 +7,15 @@ import fake_useragent as fu
 # ссылка на сайт для парсинга(сбора данных со страницы сайты)
 link = 'https://4pda.to/forum/index.php?act=auth'
 
+user = fu.UserAgent().random
+
+header = {
+    'user-agent':user
+}
+
 data = {
-    'login':'test_member1234'
-    'password':'FLb-czQ-uFk-ci7'
+    'login': 'test_member1234',
+    'password': 'FLb-czQ-uFk-ci7'
 }
 
 """
