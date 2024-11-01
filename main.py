@@ -2,7 +2,6 @@ import requests as req
 from bs4 import BeautifulSoup
 import fake_useragent as fu
 from requests import session
-
 # плюс lxml это используемый парсер
 
 """
