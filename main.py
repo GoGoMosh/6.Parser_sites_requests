@@ -6,25 +6,50 @@ import fake_useragent as fu
 from requests import session
 # плюс lxml это используемый парсер
 
-for i in range(4):
 
-    link = f'https://zastavok.net/{i}'
 
-    ans = req.get(link).text
-    soup = BeautifulSoup(ans, 'lxml')
 
-    # находим блок с картинками
-    block = soup.find('div', class_='block-photo')
 
-    all_image = block.find_all('div', class_='short_full')
 
-    for img in all_image:
 
-        image_link = img.find('a').get('href')
-        print(image_link)
-
-    print('\n')
 """
+img_num = 0
+num=0
+link = f'https://zastavok.net'
+
+user = fu.UserAgent().random
+
+header = {
+    'user-agent':user
+}
+
+
+ans = req.get(f'{link}/{num}', headers=header).text
+soup = BeautifulSoup(ans, 'lxml')
+
+# находим блок с картинками
+block = soup.find('div', class_='block-photo')
+
+all_image = block.find_all('div', class_='short_full')
+
+for img in all_image:
+
+    image_link = img.find('a').get('href')
+    download_str = req.get(f'{link}{image_link}', headers=header).text
+    download_soup = BeautifulSoup(download_str, 'lxml')
+    block_img = download_soup.find('div', class_='image_data').find('div', class_='block_down')
+    images = block_img.find('a').get('href')
+
+    # сохраняем картинку в байтах "wb" на компе
+    image_bytes = req.get(f'{link}{images}', headers=header).content
+
+    with  open(f'image/{img_num}.jpg', 'wb') as file:
+        file.write(image_bytes)
+
+    print(f"Картинка {img_num}.jpg успешна скачена")
+    img_num += 1
+
+
 
 # Создадим сессию, чтобы каждый раз не регаться заново, а чтобы были куки.
 session = req.Session()
