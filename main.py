@@ -5,10 +5,9 @@ from requests import session
 import multiprocessing
 import json
 
+
 # плюс lxml это используемый парсер
 
-
-"""
 def get_js(sp):
     block = sp.find('div', id='javascript_check')
     print(block.find_all('span')[1].text)
@@ -42,7 +41,7 @@ def main():
 if __name__ == '__main__':
     main()
 
-
+"""
 # функция для проверки прокси на валидность
 def handler(proxy):
     link = f'https://zastavok.net'
