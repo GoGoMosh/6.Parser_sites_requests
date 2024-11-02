@@ -3,9 +3,43 @@ from bs4 import BeautifulSoup
 import fake_useragent as fu
 from requests import session
 import multiprocessing
+import json
+
 
 # плюс lxml это используемый парсер
 
+def get_js(sp):
+    block = sp.find('div', id='javascript_check')
+    print(block.find_all('span')[1].text)
+
+
+def get_cookie(sp):
+    block = sp.find('div', id='cookie_check')
+    print(block.find_all('span')[1].text)
+
+
+def get_flash(sp):
+    block = sp.find('div', id='flash_version')
+    print(block.find_all('span')[1].text)
+
+
+def main():
+    with open('config.json') as file:
+        config = json.load(file)
+
+    ans = req.get('https://browser-info.ru/').text
+    soup = BeautifulSoup(ans, 'lxml')
+
+    if config['js'] == True:
+        get_js(soup)
+    if config['cookie'] == True:
+        get_cookie(soup)
+    if config['flash'] == True:
+        get_flash(soup)
+
+
+if __name__ == '__main__':
+    main()
 
 """
 # функция для проверки прокси на валидность
