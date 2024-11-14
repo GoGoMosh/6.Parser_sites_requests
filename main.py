@@ -41,7 +41,7 @@ def main():
 if __name__ == '__main__':
     main()
 
-"""
+
 # функция для проверки прокси на валидность
 def handler(proxy):
     link = f'https://zastavok.net'
@@ -189,4 +189,4 @@ print(users_name)
 
 # для получения ссылок
 .find('a').get('href')
-"""
+
