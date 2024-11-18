@@ -6,7 +6,7 @@ import multiprocessing
 import json
 
 
-# плюс lxml это используемый парсерhhhhhhhhhhh
+# плюс lxml это используемый парсерhhhhhhhhhh
 
 def get_js(sp):
     block = sp.find('div', id='javascript_check')
